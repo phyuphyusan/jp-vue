@@ -4,15 +4,46 @@
 	<title>Vue JS - First Page</title>
 	<!-- CN -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
-	<script src=""></script>
 	<!-- local -->
 	<script type="text/javascript" src="vue.min.js"></script>
 </head>
 <body>
+	<!-- app-1 -->
 	<div id="app">
 		{{ message }}
 	</div>
+	<!-- app-2 -->
+	<div id="app-2">
+		<span v-bind:title="message">
+			Hover your mouse over me for a few seconds
+			to see my dynamically bound title!
+		</span>
+	</div>
+	<!-- app-3 -->
+	<div id="app-3">
+		<span v-if="seen">Now you see me</span>
+	</div>
+	<!-- app-4 -->
+	<div id="app-4">
+		<ol>
+			<li v-for="todo in todos">
+				{{ todo.text }}
+			</li>
+		</ol>
+	</div>
+	<!-- app-5 -->
+	<div id="app-5">
+		<p>{{ message }}</p>
+		<button v-on:click="reverseMessage">Reverse Message</button>
+	</div>
+	<!-- app-6 -->
+	<div id="app-6">
+		<p>{{ message }}</p>
+		<input v-model="message">
+	</div>
+
 	<script type="text/javascript">
+		// app-1
 		var app = new Vue({
 			el: '#app',
 			data: {
@@ -20,6 +51,50 @@
 			}
 		})
 	// app.message="hi Vue!";
+	// app-2
+		var app2 = new Vue({
+			el: '#app-2',
+			data: {
+			message: 'You loaded this page on ' + new Date().toLocaleString()
+			}
+		})
+		// app-3
+		var app3 = new Vue({
+			el: '#app-3',
+			data: {
+				seen: true
+			}
+		})
+		// app-4
+		var app4 = new Vue({
+			el: '#app-4',
+			data: {
+				todos: [
+				{ text: 'Learn JavaScript' },
+				{ text: 'Learn Vue' },
+				{ text: 'Build something awesome' }
+				]
+			}
+		})
+		// app-5
+		var app5 = new Vue({
+			el: '#app-5',
+			data: {
+				message: 'Hello Vue.js!'
+			},
+			methods: {
+				reverseMessage: function () {
+					this.message = this.message.split('').reverse().join('')
+				}
+			}
+		})
+		// app-6
+		var app6 = new Vue({
+			el: '#app-6',
+			data: {
+				message: 'Hello Vue!'
+			}
+		})
 </script>
 </body>
 </html>
